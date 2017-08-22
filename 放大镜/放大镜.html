@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	    <meta charset="UTF-8">
+	    <title>Title</title>
+	    <style>
+	        *{
+	            margin: 0;
+	            padding: 0;
+	        }
+	        #box div{
+	            float: left;
+	            position: relative;
+	        }
+	        #small{
+	            width: 300px;
+	            height: 200px;
+	        }
+	        #small img{
+	            width: 100%;
+	            height: 100%;
+	        }
+	        #big{
+	            width: 400px;
+	            height: 300px;
+	            overflow: hidden;
+	        }
+	        #small span{
+	            position: absolute;
+	            width: 50px;
+	            height: 50px;
+	            background-color: rgba(0,0,255,0.3);
+	            left: 0;
+	            top: 0;
+	            cursor: all-scroll;
+	        }
+	        #big img{
+	            position: absolute;
+	        }
+	    </style>
+	</head>
+	<body>
+		<div id="box">
+		    <div id="small">
+		        <img src="car.jpg" alt="">
+		        <span></span>
+		    </div>
+		    <div id="big">
+		        <img src="car.jpg" alt="">
+		    </div>
+		</div>
+		<script>
+		    var oSmall = document.querySelector("#small");
+		    var oBig = document.querySelector("#big");
+		    var oSpan = oSmall.querySelector("span");
+		    var oImg = oBig.querySelector("img");
+		    oSmall.onmousemove = function (ev) {
+		        var ev = ev || event;
+		        var l = ev.clientX - oSpan.offsetWidth/2;
+		        var t = ev.clientY - oSpan.offsetHeight/2;
+		        if(l<0)l=0;
+		        if(l>oSmall.offsetWidth-oSpan.offsetWidth)l=oSmall.offsetWidth-oSpan.offsetWidth;
+		        if(t<0)t=0;
+		        if(t>oSmall.offsetHeight-oSpan.offsetHeight)t=oSmall.offsetHeight-oSpan.offsetHeight;
+		        oSpan.style.left = l + "px";
+		        oSpan.style.top = t + "px";
+		        var scaleX = (oImg.offsetWidth-oBig.offsetWidth)/(oSmall.offsetWidth-oSpan.offsetWidth);
+		        var scaleY = (oImg.offsetHeight-oBig.offsetHeight)/(oSmall.offsetHeight-oSpan.offsetHeight);
+		        oImg.style.left = -scaleX*l+"px";
+		        oImg.style.top = -scaleY*t+"px";
+		    }
+		</script>
+	</body>
+</html>

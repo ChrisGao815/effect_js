@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		ul{
+			list-style: none;
+		}
+		li{
+			width: 50px;
+			height: 20px;
+			border: 1px solid red;
+			float: left;
+		}
+		.active{
+			background: brown;
+		}
+	</style>
+	<body>
+		<ul>
+			<li class="1">1</li>
+			<li class="2">2</li>
+			<li class="3">3</li>
+			<li class="4">4</li>
+		</ul>
+		
+		<script type="text/javascript">
+		var cn = sessionStorage.className;
+//		console.log($('li').className)
+		for(var i = 0;i<$('li').length;i++){
+			if($('li')[i].className==cn){
+				$('li')[i].className = 'active';
+			}
+		}
+		
+			
+		</script>
+		
+	</body>
+</html>

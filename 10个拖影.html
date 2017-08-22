@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			div{
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				left: 0px;
+				top: 0px;
+				background-color: red;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+	</body>
+	<script>
+		var divs=document.getElementsByTagName('div');
+		document.onmousemove=function(ev){
+			var e=ev||window.event;
+			var x=e.clientX;
+			var y=e.clientY;
+//			for(var i=0;i<divs.length;i++){
+//				divs[i].style.left=x+'px';
+//				divs[i].style.top=y+'px';
+//			}
+			var time1=null,a=-1;
+			time1=setInterval(function(){
+				a++;
+				if(a>divs.length-1){
+					a=divs.length-1;
+					clearInterval(time1);
+				}
+				divs[a].style.left=x+'px';
+				divs[a].style.top=y+'px';
+			},30)
+		}
+	</script>
+</html>

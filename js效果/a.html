@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<style>
+		ul{
+			list-style: none;
+		}
+		li{
+			width: 50px;
+			height: 20px;
+			border: 1px solid red;
+			float: left;
+		}
+	</style>
+	<body>
+		<a href="b.html">
+		<ul>
+			<li class="1">1</li>
+			<li class="2">2</li>
+			<li class="3">3</li>
+			<li class="4">4</li>
+		</ul>
+		</a>
+		<script type="text/javascript">
+			$('li').click(function(){
+				sessionStorage.className = this.className;
+			})
+			
+			
+			
+		</script>
+	</body>
+</html>

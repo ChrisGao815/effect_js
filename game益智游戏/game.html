@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>益智游戏</title>
+    <script src="jquery-1.11.3.js"></script>
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    <style>
+        body {
+            font-size: 62.5%;
+            font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+        }
+        #draggable, #draggable-nonvalid {
+            width: 100px;
+            height: 100px;
+            padding: 0.5em;
+            float: left;
+            margin: 10px 10px 10px 0;
+        }
+        #droppable {
+            width: 150px;
+            height: 150px;
+            padding: 0.5em;
+            float: left;
+            margin: 10px;
+        }
+		.ball{
+		    width: 100px;
+            height: 100px;
+            float: left;
+            margin-left:10px;
+			bottom:0px;
+			border-radius:50%;
+			position:relative;
+			text-align:center;
+			line-height:6000px;
+			background-color:pink;
+		}
+		.outer{
+			float:left;
+			margin: 300px auto;
+            height: 300px;
+			width:100%;
+		}
+		.inner{
+		   height: 100px;
+			width:70%;
+		   margin: 50px auto;
+		}
+		.currt{}
+		.hide{}
+	
+    </style>
+</head>
+<body>
+<div class="outer">
+<div class="inner">
+
+</div>
+</div>
+<script>
+	creatElem();
+	dragg();
+	
+	function creatElem(){
+		for(var i=0;i<10;i++){
+			var $div=$("<div id='draggable"+i+"' class='ball'>1</div>");
+			$(".inner").append($div);
+		}
+	}
+	function dragg(){
+    $(".ball").draggable({
+			revert : true,
+			start : function(){
+			$(".hide").remove();
+			$(".ball").removeClass('currt');
+			$(this).addClass("currt");
+		},
+		drag : function(){
+		},
+		stop : function(){
+		}
+	}); 
+}
+	$(".ball").droppable({
+		accept : ".currt",
+		drop : function(event,ui){
+			var target=event.target;
+			var uiText=parseInt(ui.draggable[0].innerHTML);
+			var thisText=parseInt($(this).text());	
+			//1.被放置的元素是移动元素的下下下一个  &&  移动元素的下一个和下下一个是都是1 true
+			var bool1;
+			var bool2;
+			var bool3;
+			var bool4;
+			try{
+					$(ui.draggable[0]).next()[0].innerHTML==1&&$(ui.draggable[0]).next().next()[0].innerHTML==1?bool1=true:bool1=false;
+					$(ui.draggable[0]).next().next().next()[0].id==$(this)[0].id?bool2=true:bool2=false;
+					var b=(bool1&&bool2);
+			}catch (e){}
+			try{
+					$(ui.draggable[0]).prev()[0].innerHTML==1&&$(ui.draggable[0]).prev().prev()[0].innerHTML==1?bool3=true:bool3=false;
+					$(ui.draggable[0]).prev().prev().prev()[0].id==$(this)[0].id?bool4=true:bool4=false;
+					var c=(bool3&&bool4)
+			}catch (e){}
+		//2.被放置的元素是移动元素的下下一个  &&  移动元素的下一个是2   true;
+			var bool5;
+			var bool6;
+			var bool7;
+			var bool8;
+			try{
+					$(ui.draggable[0]).next()[0].innerHTML==2&&$(ui.draggable[0]).next().next()[0].innerHTML==1?bool5=true:bool5=false;
+					$(ui.draggable[0]).next().next()[0].id==$(this)[0].id?bool6=true:bool6=false;
+					var d=(bool5&&bool6);
+			}catch (e){}
+			try{
+					$(ui.draggable[0]).prev()[0].innerHTML==2&&$(ui.draggable[0]).prev().prev()[0].innerHTML==1?bool7=true:bool7=false;
+					$(ui.draggable[0]).prev().prev()[0].id==$(this)[0].id?bool8=true:bool8=false;
+					console.log($(ui.draggable[0]).prev().prev()[0].id==$(this)[0].id);
+					var e=(bool7&&bool8);
+			}catch (g){}
+			if(uiText!=2&&thisText!=2&&((c||b)||(d||e))){
+			   $(".ball").draggable({
+			   revert : false
+			   });
+			   	$(".currt").hide('slow').addClass("hide")
+				$(this).text("2");
+				$(this).css({"backgroundColor":"orange","lineHeight":"600"});
+
+			}
+			   $(".ball").draggable({
+			   revert : true
+			   });
+		
+		}
+
+	});
+
+	
+
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
